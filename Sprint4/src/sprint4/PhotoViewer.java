@@ -181,18 +181,27 @@ public class PhotoViewer extends JFrame {
      */
     public static void main(String[] args) {
 
+    	
         // Instantiate the PhotoViewer Class
         PhotoViewer myViewer = new PhotoViewer();
 
         // The relative image directory (for Windows, change to "images\\")
         String imageDirectory = "images/";
         
+        
+        Photograph p1 = new Photograph (imageDirectory + "img1.jpg", "caption", " 2015 -06 -30 ", 5) ;
+
+    	myViewer.setImageLibrary(new PhotoLibrary(" Test Library ", 1) ) ;
+    	myViewer.getImageLibrary().addPhoto ( p1 ) ;
         // TODO Load images below
 
         // Invoke and start the Graphical User Interface
         javax.swing.SwingUtilities.invokeLater(() -> myViewer.initialize());
+    
     }
-
+    
+    
+    
     /**
      * Initialize all the GUI components.  This method will be called by
      * SwingUtilities when the application is started.
@@ -334,7 +343,7 @@ public class PhotoViewer extends JFrame {
            
             
             
-            
+         /**   
             // Add the scaled image as the thumbnail.
             try {
                 BufferedImage b = p.getImageData();
@@ -342,6 +351,7 @@ public class PhotoViewer extends JFrame {
             } catch (Exception e) {
                 System.err.println("Could not scale the image.");
             }
+          */
             
             // Add this thumbnail and label to the thumbnailPanel
             thumbnailPanel.add(thumbnailLabel);
