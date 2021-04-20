@@ -341,7 +341,39 @@ public class PhotoViewer extends JFrame {
             // TODO add an appropriate listener to display the chosen photo in the main image display
             // Note: you will need a way to get the position of image p in the imageLibrary's photos list
            
-            
+            thumbnailLabel.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+            	
+            });
             
          /**   
             // Add the scaled image as the thumbnail.
