@@ -1,6 +1,10 @@
 package sprint4;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.*;
+
+import javax.imageio.ImageIO;
 
 /**
  * Sprint 1
@@ -17,6 +21,12 @@ import java.util.*;
 /**
  * Sprint 3
  * @author Adair Tabb
+ *
+ */
+
+/**
+ * Sprint 4
+ * @author Evelina
  *
  */
 
@@ -48,6 +58,12 @@ public class Photograph implements Comparable<Photograph> {
 	private int rating;
 	
 	/**
+	 * @author Evelina
+	 * A BufferedImage object that contains the image's data.
+	 */
+	protected BufferedImage imageData;
+	
+	/**
 	 * Constructor for a Photograph object, taking a filename and caption, which are then stored in the class fields.
 	 * @param filename The filename of the photograph object.
 	 * @param caption  The caption of the photograph object.
@@ -74,6 +90,7 @@ public class Photograph implements Comparable<Photograph> {
 		this.dateTaken = dateTaken;
 		this.rating = rating;
 	}
+
 	
 	/**
 	 * Gets and returns the filename stored in the corresponding class field.
@@ -113,6 +130,14 @@ public class Photograph implements Comparable<Photograph> {
 	
 	/**
 	 * @author Evelina
+	 * Gets and returns imageData.
+	 */
+	public BufferedImage getImageData() {
+		return imageData;
+	}
+	
+	/**
+	 * @author Evelina
 	 * Mutator/setter for the field caption.
 	 * @param caption
 	 */
@@ -127,6 +152,14 @@ public class Photograph implements Comparable<Photograph> {
 	 */
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+	
+	/**
+	 * @author Evelina 
+	 * Mutator/setter for the field imageData.
+	 */
+	public void setImageData(BufferedImage imageData) {
+		this.imageData = imageData;
 	}
 	
 	/**
@@ -178,6 +211,23 @@ public class Photograph implements Comparable<Photograph> {
 		}
 		else {
 			return this.getCaption().compareTo(p.getCaption());
+		}
+	}
+	
+	/**
+	 * @author Evelina
+	 * Given a filename, this method loads the Image data from the file
+	 * and stores it into the imageData field. Returns true if successful.
+	 * Returns false otherwise.
+	 */
+	public boolean loadImageData(String filename) {
+		BufferedImage img = ImageIO.read(new File(filename));
+		if (img == null){
+			return false;
+		}
+		else {
+			imageData = img;
+			return true;
 		}
 	}
 }
