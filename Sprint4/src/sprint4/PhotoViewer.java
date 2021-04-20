@@ -86,7 +86,8 @@ public class PhotoViewer extends JFrame {
 
     /**
      * Button listener for the Next and Previous Buttons
-     */
+	 * @author Alex Dozzi
+	 */
     class NavigationListener implements ActionListener {
 
 		@Override
@@ -114,6 +115,7 @@ public class PhotoViewer extends JFrame {
     
     /**
      * Button Listener for the Rating radio buttons
+     * @author Alex Dozzi
      */
     class RatingChangeListener implements ActionListener{
 
@@ -145,6 +147,7 @@ public class PhotoViewer extends JFrame {
     
     /**
      * Button Listener for the Sort buttons
+     * @author Alex Dozzi
      */
     class SortNavigationListener implements ActionListener {
     	
