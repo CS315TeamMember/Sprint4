@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collections;
 
 /**
@@ -85,22 +87,142 @@ public class PhotoViewer extends JFrame {
     /**
      * Button listener for the Next and Previous Buttons
      */
-    class NavigationListener {
+    class NavigationListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if (e.getActionCommand() == "next") { 
+				int nextPhotoIndex = getImageLibrary().photos.indexOf(getImageLibrary().name)+1;
+				if (nextPhotoIndex >= getImageLibrary().photos.size()) {
+						nextPhotoIndex = 0; 
+				}
+				displayPhoto(nextPhotoIndex);
+				
+				
+			}
+			else if (e.getActionCommand() == "previous") {
+				int previousPhotoIndex = getImageLibrary().photos.indexOf(getImageLibrary().name)-1;
+				if (previousPhotoIndex < 0) {
+					previousPhotoIndex = getImageLibrary().photos.size()-1;  
+				}
+				displayPhoto(previousPhotoIndex);
+				
+			}
+				
+			drawThumbnails();
+		}
         // TODO
     }
     
     /**
      * Button Listener for the Rating radio buttons
      */
-    class RatingChangeListener {
+    class RatingChangeListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "rb1") {
+				getImageLibrary().photos.get(albumPosition).setRating(1);				
+			}
+			
+			else if (e.getActionCommand() == "rb2") {
+				getImageLibrary().photos.get(albumPosition).setRating(2);				
+			}
+			
+			else if (e.getActionCommand() == "rb3") {
+				getImageLibrary().photos.get(albumPosition).setRating(3);
+			}
+			
+			else if (e.getActionCommand() == "rb4") {
+				getImageLibrary().photos.get(albumPosition).setRating(4);				
+			}
+			
+			else if (e.getActionCommand() == "rb5") {
+				getImageLibrary().photos.get(albumPosition).setRating(5);		
+			}
+			drawThumbnails();
+
+			
+			
+		}
         // TODO
     }
     
     /**
      * Button Listener for the Sort buttons
      */
-    class SortNavigationListener {
-        // TODO
+    class SortNavigationListener implements ActionListener {
+    	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getActionCommand() == "dateSort") {
+				ArrayList<String> dateList = new ArrayList<String>();
+				for (Photograph p : getImageLibrary().photos) {
+					dateList.add(p.getDateTaken());
+				}
+				Collections.sort(dateList);
+				
+				ArrayList<Photograph> sortedList = new ArrayList<Photograph>();
+				int count = 0;
+				while (count < dateList.size()) {
+					for (Photograph p : getImageLibrary().photos) {
+						if (p.getDateTaken() == dateList.get(count)) {
+							sortedList.add(p);
+							break;
+						}
+					}
+					count++;	
+				}
+				getImageLibrary().photos = sortedList;
+				
+			}
+			
+			else if (e.getActionCommand() == "captionSort") {
+				ArrayList<String> captionList = new ArrayList<String>();
+				for (Photograph p : getImageLibrary().photos) {
+					captionList.add(p.getCaption());
+				}
+				Collections.sort(captionList);
+				
+				ArrayList<Photograph> sortedList = new ArrayList<Photograph>();
+				int count = 0;
+				while (count < captionList.size()) {
+					for (Photograph p : getImageLibrary().photos) {
+						if (p.getCaption() == captionList.get(count)) {
+							sortedList.add(p);
+							break;
+						}
+					}
+					count++;	
+				}
+				getImageLibrary().photos = sortedList;
+			}
+			
+			else if (e.getActionCommand() == "ratingSort") {
+				ArrayList<Integer> ratingList = new ArrayList<Integer>();
+				for (Photograph p : getImageLibrary().photos) {
+					ratingList.add(p.getRating());
+				}
+				Collections.sort(ratingList);
+				
+				ArrayList<Photograph> sortedList = new ArrayList<Photograph>();
+				int count = 0;
+				while (count < ratingList.size()) {
+					for (Photograph p : getImageLibrary().photos) {
+						if (p.getRating() == ratingList.get(count)) {
+							sortedList.add(p);
+							break;
+						}
+					}
+					count++;	
+				}
+				getImageLibrary().photos = sortedList;
+				
+			}
+			drawThumbnails();
+		}
+        
     }
 
     /**
