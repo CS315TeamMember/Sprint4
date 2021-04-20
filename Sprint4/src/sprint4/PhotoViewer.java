@@ -93,26 +93,23 @@ public class PhotoViewer extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			if (e.getActionCommand() == "next") { 
-				int nextPhotoIndex = getImageLibrary().photos.indexOf(getImageLibrary().name)+1;
-				if (nextPhotoIndex >= getImageLibrary().photos.size()) {
+				int nextPhotoIndex = getImageLibrary().getPhotos().indexOf(getImageLibrary().name)+1;
+				if (nextPhotoIndex >= getImageLibrary().getPhotos().size()) {
 						nextPhotoIndex = 0; 
 				}
-				displayPhoto(nextPhotoIndex);
-				
-				
+				displayPhoto(nextPhotoIndex);		
 			}
+			
 			else if (e.getActionCommand() == "previous") {
-				int previousPhotoIndex = getImageLibrary().photos.indexOf(getImageLibrary().name)-1;
+				int previousPhotoIndex = getImageLibrary().getPhotos().indexOf(getImageLibrary().name)-1;
 				if (previousPhotoIndex < 0) {
-					previousPhotoIndex = getImageLibrary().photos.size()-1;  
+					previousPhotoIndex = getImageLibrary().getPhotos().size()-1;  
 				}
-				displayPhoto(previousPhotoIndex);
-				
+				displayPhoto(previousPhotoIndex);	
 			}
-				
+			
 			drawThumbnails();
 		}
-        // TODO
     }
     
     /**
@@ -123,30 +120,27 @@ public class PhotoViewer extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "rb1") {
-				getImageLibrary().photos.get(albumPosition).setRating(1);				
+				getImageLibrary().getPhotos().get(albumPosition).setRating(1);				
 			}
 			
 			else if (e.getActionCommand() == "rb2") {
-				getImageLibrary().photos.get(albumPosition).setRating(2);				
+				getImageLibrary().getPhotos().get(albumPosition).setRating(2);				
 			}
 			
 			else if (e.getActionCommand() == "rb3") {
-				getImageLibrary().photos.get(albumPosition).setRating(3);
+				getImageLibrary().getPhotos().get(albumPosition).setRating(3);
 			}
 			
 			else if (e.getActionCommand() == "rb4") {
-				getImageLibrary().photos.get(albumPosition).setRating(4);				
+				getImageLibrary().getPhotos().get(albumPosition).setRating(4);				
 			}
 			
 			else if (e.getActionCommand() == "rb5") {
-				getImageLibrary().photos.get(albumPosition).setRating(5);		
+				getImageLibrary().getPhotos().get(albumPosition).setRating(5);		
 			}
-			drawThumbnails();
-
 			
-			
+			drawThumbnails();			
 		}
-        // TODO
     }
     
     /**
@@ -156,70 +150,21 @@ public class PhotoViewer extends JFrame {
     	
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getActionCommand() == "dateSort") {
-				ArrayList<String> dateList = new ArrayList<String>();
-				for (Photograph p : getImageLibrary().photos) {
-					dateList.add(p.getDateTaken());
-				}
-				Collections.sort(dateList);
-				
-				ArrayList<Photograph> sortedList = new ArrayList<Photograph>();
-				int count = 0;
-				while (count < dateList.size()) {
-					for (Photograph p : getImageLibrary().photos) {
-						if (p.getDateTaken() == dateList.get(count)) {
-							sortedList.add(p);
-							break;
-						}
-					}
-					count++;	
-				}
-				getImageLibrary().photos = sortedList;
-				
+			if (e.getActionCommand() == "dateSort") {				
+				Collections.sort(getImageLibrary().getPhotos());		
 			}
 			
 			else if (e.getActionCommand() == "captionSort") {
-				ArrayList<String> captionList = new ArrayList<String>();
-				for (Photograph p : getImageLibrary().photos) {
-					captionList.add(p.getCaption());
-				}
-				Collections.sort(captionList);
+				CompareByCaption cc = new CompareByCaption();
+				getImageLibrary().getPhotos().sort(cc);
 				
-				ArrayList<Photograph> sortedList = new ArrayList<Photograph>();
-				int count = 0;
-				while (count < captionList.size()) {
-					for (Photograph p : getImageLibrary().photos) {
-						if (p.getCaption() == captionList.get(count)) {
-							sortedList.add(p);
-							break;
-						}
-					}
-					count++;	
-				}
-				getImageLibrary().photos = sortedList;
 			}
 			
 			else if (e.getActionCommand() == "ratingSort") {
-				ArrayList<Integer> ratingList = new ArrayList<Integer>();
-				for (Photograph p : getImageLibrary().photos) {
-					ratingList.add(p.getRating());
-				}
-				Collections.sort(ratingList);
-				
-				ArrayList<Photograph> sortedList = new ArrayList<Photograph>();
-				int count = 0;
-				while (count < ratingList.size()) {
-					for (Photograph p : getImageLibrary().photos) {
-						if (p.getRating() == ratingList.get(count)) {
-							sortedList.add(p);
-							break;
-						}
-					}
-					count++;	
-				}
-				getImageLibrary().photos = sortedList;
-				
+				CompareByRating cr = new CompareByRating();
+				getImageLibrary().getPhotos().sort(cr);	
 			}
+			
 			drawThumbnails();
 		}
         
