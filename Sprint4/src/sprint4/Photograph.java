@@ -2,6 +2,7 @@ package sprint4;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 import javax.imageio.ImageIO;
@@ -221,7 +222,12 @@ public class Photograph implements Comparable<Photograph> {
 	 * Returns false otherwise.
 	 */
 	public boolean loadImageData(String filename) {
-		BufferedImage img = ImageIO.read(new File(filename));
+		BufferedImage img;
+		try {
+			img = ImageIO.read(new File(filename));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		if (img == null){
 			return false;
 		}
