@@ -98,6 +98,9 @@ public class PhotoViewer extends JFrame {
 				if (nextPhotoIndex >= getImageLibrary().getPhotos().size()) {
 						nextPhotoIndex = 0; 
 				}
+				else {
+					nextPhotoIndex++;
+				}
 				displayPhoto(nextPhotoIndex);		
 			}
 			
@@ -105,6 +108,9 @@ public class PhotoViewer extends JFrame {
 				int previousPhotoIndex = getImageLibrary().getPhotos().indexOf(getImageLibrary().name)-1;
 				if (previousPhotoIndex < 0) {
 					previousPhotoIndex = getImageLibrary().getPhotos().size()-1;  
+				}
+				else {
+					previousPhotoIndex--;
 				}
 				displayPhoto(previousPhotoIndex);	
 			}
@@ -420,3 +426,4 @@ public class PhotoViewer extends JFrame {
 
     }
 }
+
