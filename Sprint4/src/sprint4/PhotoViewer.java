@@ -180,20 +180,31 @@ public class PhotoViewer extends JFrame {
      * @param args  Optional command-line arguments
      */
     public static void main(String[] args) {
-
-    	
         // Instantiate the PhotoViewer Class
         PhotoViewer myViewer = new PhotoViewer();
 
         // The relative image directory (for Windows, change to "images\\")
-        String imageDirectory = "images/";
+        String imageDirectory = "images\\";
         
-        
-        Photograph p1 = new Photograph (imageDirectory + "img1.jpg", "caption", " 2015 -06 -30 ", 5) ;
+        //Photograph p1 = new Photograph (imageDirectory + "Ada_Lovelace.jpg", "caption", " 2015 -06 -30 ", 5) ;
+        Photograph p1 = new Photograph(imageDirectory + "Ada_Lovelace.jpg", "Ada Lovelace", "1815-12-10", 5);
+		Photograph p2 = new Photograph(imageDirectory + "Alan_Turing_Aged_16.jpg", "Alan Turing", "1912-06-23", 4);
+		Photograph p3 = new Photograph(imageDirectory + "AnnieEasley.jpg", "Annie Easley", "1933-04-23", 3);
+		Photograph p4 = new Photograph(imageDirectory + "Dorothy_Vaughan.jpg", "Dorothy Vaughan", "1910-09-20", 2);
+		Photograph p5 = new Photograph(imageDirectory + "Grace_Hopper_and_UNIVAC.jpg", "Grace Hopper and UNIVAC", "1906-12-09", 1);
 
     	myViewer.setImageLibrary(new PhotoLibrary(" Test Library ", 1) ) ;
-    	myViewer.getImageLibrary().addPhoto ( p1 ) ;
+    	myViewer.getImageLibrary().addPhoto(p1);
+    	myViewer.getImageLibrary().addPhoto(p2);
+    	myViewer.getImageLibrary().addPhoto(p3);
+    	myViewer.getImageLibrary().addPhoto(p4);
+    	myViewer.getImageLibrary().addPhoto(p5);
         // TODO Load images below
+    	p1.loadImageData(p1.getFileName());
+    	p2.loadImageData(p2.getFileName());
+    	p3.loadImageData(p3.getFileName());
+    	p4.loadImageData(p4.getFileName());
+    	p5.loadImageData(p5.getFileName());
 
         // Invoke and start the Graphical User Interface
         javax.swing.SwingUtilities.invokeLater(() -> myViewer.initialize());
@@ -325,6 +336,8 @@ public class PhotoViewer extends JFrame {
 
     /**
      * Display thumbnails in the thumbnailPanel.  
+     * 
+     * @author Adair Tabb
      */
     private void drawThumbnails() {
         // Clear the panel of all thumbnails
@@ -345,8 +358,7 @@ public class PhotoViewer extends JFrame {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
+					displayPhoto(imageLibrary.getPhotos().indexOf(p));
 				}
 
 				@Override
@@ -375,7 +387,7 @@ public class PhotoViewer extends JFrame {
             	
             });
             
-         /**   
+            
             // Add the scaled image as the thumbnail.
             try {
                 BufferedImage b = p.getImageData();
@@ -383,7 +395,7 @@ public class PhotoViewer extends JFrame {
             } catch (Exception e) {
                 System.err.println("Could not scale the image.");
             }
-          */
+          
             
             // Add this thumbnail and label to the thumbnailPanel
             thumbnailPanel.add(thumbnailLabel);
@@ -394,10 +406,14 @@ public class PhotoViewer extends JFrame {
      * Displays a photo, given by the index into the imageLibrary's photos, into the main display.
      * 
      * @param position The position into the imageLibrary's photos list
+     * 
+     * @author Adair Tabb
      */
     private void displayPhoto(int position) {
-        // TODO implement this method
-        
+    	Photograph p = imageLibrary.getPhotos().get(position);
+    	BufferedImage b = p.getImageData();
+    	imageDisplayLabel.setIcon(new ImageIcon(b));
+    	
         // Repaint the display so that the new image gets displayed
         displayPanel.repaint();
         

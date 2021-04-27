@@ -222,7 +222,7 @@ public class Photograph implements Comparable<Photograph> {
 	 * Returns false otherwise.
 	 */
 	public boolean loadImageData(String filename) {
-		BufferedImage img;
+		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File(filename));
 		} catch (IOException e) {
@@ -232,7 +232,7 @@ public class Photograph implements Comparable<Photograph> {
 			return false;
 		}
 		else {
-			imageData = img;
+			setImageData(img);
 			return true;
 		}
 	}
