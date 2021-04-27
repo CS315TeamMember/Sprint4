@@ -124,29 +124,29 @@ public class PhotoViewer extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "rate1") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(1);	
-				drawThumbnails();
+
 			}
 			
 			else if (e.getActionCommand() == "rate2") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(2);	
-				drawThumbnails();
+
 			}
 			
 			else if (e.getActionCommand() == "rate3") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(3);
-				drawThumbnails();
+
 			}
 			
 			else if (e.getActionCommand() == "rate4") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(4);	
-				drawThumbnails();
+
 			}
 			
 			else if (e.getActionCommand() == "rate5") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(5);
-				drawThumbnails();
+
 			}
-			
+			drawThumbnails();
 						
 		}
     }
@@ -427,4 +427,3 @@ public class PhotoViewer extends JFrame {
 
     }
 }
-
