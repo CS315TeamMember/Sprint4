@@ -94,28 +94,23 @@ public class PhotoViewer extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			if (e.getActionCommand() == "next") { 
-				int nextPhotoIndex = getImageLibrary().getPhotos().indexOf(getImageLibrary().name)+1;
-				if (nextPhotoIndex >= getImageLibrary().getPhotos().size()) {
-						nextPhotoIndex = 0; 
-				}
-				else {
-					nextPhotoIndex++;
-				}
-				displayPhoto(nextPhotoIndex);		
+				albumPosition++;
+				if (albumPosition >= getImageLibrary().getPhotos().size()) {
+						albumPosition = 0; 
+				}	
+				displayPhoto(albumPosition);
+				drawThumbnails();
 			}
 			
 			else if (e.getActionCommand() == "previous") {
-				int previousPhotoIndex = getImageLibrary().getPhotos().indexOf(getImageLibrary().name)-1;
-				if (previousPhotoIndex < 0) {
-					previousPhotoIndex = getImageLibrary().getPhotos().size()-1;  
+				albumPosition--;
+				if (albumPosition < 0) {
+					albumPosition = getImageLibrary().getPhotos().size()-1;  
 				}
-				else {
-					previousPhotoIndex--;
-				}
-				displayPhoto(previousPhotoIndex);	
+				displayPhoto(albumPosition);
+				drawThumbnails();
 			}
 			
-			drawThumbnails();
 		}
     }
     
@@ -427,4 +422,3 @@ public class PhotoViewer extends JFrame {
 
     }
 }
-
