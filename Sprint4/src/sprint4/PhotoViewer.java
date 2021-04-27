@@ -151,7 +151,6 @@ public class PhotoViewer extends JFrame {
 				drawThumbnails();
 
 			}
-			drawThumbnails();
 						
 		}
     }
