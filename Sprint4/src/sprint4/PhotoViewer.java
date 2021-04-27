@@ -417,6 +417,7 @@ public class PhotoViewer extends JFrame {
      */
     private void displayPhoto(int position) {
     	Photograph p = imageLibrary.getPhotos().get(position);
+    	albumPosition = position;
     	BufferedImage b = p.getImageData();
     	imageDisplayLabel.setIcon(new ImageIcon(b));
     	
