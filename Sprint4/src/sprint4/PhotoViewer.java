@@ -124,26 +124,31 @@ public class PhotoViewer extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "rate1") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(1);	
+				drawThumbnails();
 
 			}
 			
 			else if (e.getActionCommand() == "rate2") {
-				getImageLibrary().getPhotos().get(albumPosition).setRating(2);	
+				getImageLibrary().getPhotos().get(albumPosition).setRating(2);
+				drawThumbnails();
 
 			}
 			
 			else if (e.getActionCommand() == "rate3") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(3);
+				drawThumbnails();
 
 			}
 			
 			else if (e.getActionCommand() == "rate4") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(4);	
+				drawThumbnails();
 
 			}
 			
 			else if (e.getActionCommand() == "rate5") {
 				getImageLibrary().getPhotos().get(albumPosition).setRating(5);
+				drawThumbnails();
 
 			}
 			drawThumbnails();
@@ -405,6 +410,8 @@ public class PhotoViewer extends JFrame {
             
             // Add this thumbnail and label to the thumbnailPanel
             thumbnailPanel.add(thumbnailLabel);
+            thumbnailPanel.revalidate();
+           
         }
     }
 
@@ -420,6 +427,26 @@ public class PhotoViewer extends JFrame {
     	albumPosition = position;
     	BufferedImage b = p.getImageData();
     	imageDisplayLabel.setIcon(new ImageIcon(b));
+    	
+    	int rating = p.getRating();
+    	
+    	switch(rating) {
+    	case 1:
+    		rb1.setSelected(true);
+    		break;
+    	case 2:
+    		rb2.setSelected(true);
+    		break;
+    	case 3:
+    		rb3.setSelected(true);
+    		break;
+    	case 4:
+    		rb4.setSelected(true);
+    		break;
+    	case 5:
+    		rb5.setSelected(true);
+    		break;
+    	}
     	
         // Repaint the display so that the new image gets displayed
         displayPanel.repaint();
