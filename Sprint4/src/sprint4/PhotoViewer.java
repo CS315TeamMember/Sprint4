@@ -164,7 +164,7 @@ public class PhotoViewer extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getActionCommand() == "dateSort") {				
-				Collections.sort(getImageLibrary().getPhotos());		
+				Collections.sort(getImageLibrary().getPhotos());
 			}
 			
 			else if (e.getActionCommand() == "captionSort") {
@@ -178,6 +178,7 @@ public class PhotoViewer extends JFrame {
 				getImageLibrary().getPhotos().sort(cr);	
 			}
 			
+			displayPhoto(0);
 			drawThumbnails();
 		}
         
