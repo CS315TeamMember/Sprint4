@@ -189,6 +189,8 @@ public class PhotoViewer extends JFrame {
      * initializes the Graphical User Interface.
      * 
      * @param args  Optional command-line arguments
+     * 
+     * @author Adair Tabb
      */
     public static void main(String[] args) {
         // Instantiate the PhotoViewer Class
@@ -210,7 +212,7 @@ public class PhotoViewer extends JFrame {
     	myViewer.getImageLibrary().addPhoto(p3);
     	myViewer.getImageLibrary().addPhoto(p4);
     	myViewer.getImageLibrary().addPhoto(p5);
-        // TODO Load images below
+
     	p1.loadImageData(p1.getFileName());
     	p2.loadImageData(p2.getFileName());
     	p3.loadImageData(p3.getFileName());
@@ -365,7 +367,7 @@ public class PhotoViewer extends JFrame {
             // TODO add an appropriate listener to display the chosen photo in the main image display
             // Note: you will need a way to get the position of image p in the imageLibrary's photos list
            
-            thumbnailLabel.addMouseListener(new MouseListener() {
+            thumbnailLabel.addMouseListener(new MouseListener() { //https://docs.oracle.com/javase/tutorial/uiswing/events/mouselistener.html
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -430,7 +432,7 @@ public class PhotoViewer extends JFrame {
     	
     	int rating = p.getRating();
     	
-    	switch(rating) {
+    	switch(rating) { //https://stackoverflow.com/questions/12078648/setting-a-default-enabled-radiobutton-in-a-jtable
     	case 1:
     		rb1.setSelected(true);
     		break;
